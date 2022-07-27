@@ -4,5 +4,9 @@ RUN  echo 'deb http://download.opensuse.org/repositories/graphics:/darktable/Deb
      curl -fsSL https://download.opensuse.org/repositories/graphics:darktable/Debian_Next/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/graphics_darktable.gpg > /dev/null && \
      apt-get update && \
      apt -qq install apt-utils && \
-     apt -qq install darktable && \
+     apt -qq install darktable || ( \
+       wget -O darktable_4.0.0-1.1_amd64.deb 'https://download.opensuse.org/repositories/graphics:/darktable/Debian_Next/amd64/darktable_4.0.0-1.1_amd64.deb' && \
+       dpkg -i darktable_4.0.0-1.1_amd64.deb && \
+       rm -f darktable_4.0.0-1.1_amd64.deb && \
+     ) && \
        /scripts/cleanup.sh
