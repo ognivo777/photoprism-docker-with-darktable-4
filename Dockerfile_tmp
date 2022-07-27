@@ -1,0 +1,7 @@
+FROM photoprism/photoprism
+
+RUN  apt -qq remove darktable && \
+     wget -O darktable_4.0.0-1.1_amd64.deb 'https://download.opensuse.org/repositories/graphics:/darktable/Debian_Next/amd64/darktable_4.0.0-1.1_amd64.deb' && \
+     dpkg -i darktable_4.0.0-1.1_amd64.deb && \
+     rm -f darktable_4.0.0-1.1_amd64.deb && \
+       /scripts/cleanup.sh
